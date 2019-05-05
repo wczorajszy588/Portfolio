@@ -1,0 +1,63 @@
+html {
+    --clock-size: 450px;
+}
+* {
+    margin: 0;
+}
+html, body {
+    height: 100%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: url(./background.jpg);
+}
+@keyframes blinkColorMsg {
+    0% {text-shadow: 0 0 10px red}
+    50% {text-shadow: 0 0 0px red}
+    100% {text-shadow: 0 0 10px red}
+}
+.msg {
+    position: absolute;
+    top: 10%;
+    display: none;
+    color: yellow;
+    animation-name: blinkColorMsg;
+    animation-duration: 1s;
+    animation-iteration-count: infinite
+}
+.clock {
+    width: var(--clock-size); /*change this to rescale clock*/
+    min-height: var(--clock-size); 
+    position: relative;
+    border-color: black;
+    border-style: solid;
+    background-color: rgba(222, 184, 135, 0.8);
+    box-shadow: 0px 0px 15px 15px rgba(0, 0, 0, 0.6), inset 0px 0px 15px rgba(0, 0, 0, 1);
+}
+.secHand, .minHand, .hourHand {
+    position: absolute;    
+    transform-origin: 100% 50%;
+    transition: transform 0.08s;
+}
+.secHand {
+    background-color: red;
+    transition-timing-function: cubic-bezier(0.04,0.29,0.61,1.71);
+    box-shadow: 8px 8px 4px 1px rgba(0, 0, 0, 0.4);
+}
+.minHand, .hourHand {
+    background-color: black;
+}
+.minHand {
+    box-shadow: 6px 6px 3px 1px rgba(0, 0, 0, 0.4);
+}
+.hourHand {
+    box-shadow: 4px 4px 3px 1px rgba(0, 0, 0, 0.4);
+}
+.pin {
+    position: absolute;
+    height: 0px;
+    width: 0px;
+}

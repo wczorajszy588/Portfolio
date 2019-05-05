@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+}
+html, body, .keys {
+    height: 100%; /* .keys height same as browser window height */
+}
+.keys {
+    display: flex; /*set drum keys in row*/
+    justify-content: space-around; /*set drum keys symmetric in X-axis*/
+    align-items: center; /* set drum keys in center along Y-axis */
+    background-image: url(./background.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 2000px;
+}
+.key { /* drum keys */
+    background-color: rgba(75, 116, 75, 0.8);
+    color: rgba(255,255,255);
+    width: 80px;
+    text-align: center;
+    border: 4px solid rgb(88, 179, 133);
+    border-radius: 3px;
+    transition: transform 0.1s;
+}
+.key.played { /* drum key during playing */
+    border: 4px solid rgb(194, 89, 89);
+    transform: scale(1.1);
+}
+.key > .sound { /* drum keys type of sound indicatior */
+    color: gold;
+}

@@ -1,0 +1,46 @@
+.player {
+    --player-width: 1000px;
+    position: relative;
+    width: var(--player-width);
+}
+.screen {
+    width: 100%;
+}
+.controls {
+    --controls-height: calc( var(--player-height) / 22 );
+    position: absolute;
+    bottom: 4px;
+    left: 0px;
+    display: flex;
+    width: 100%;
+}
+.video-progress-bar {
+    width: 70%;
+    height: var( --controls-height );
+    -webkit-appearance: none;
+    margin: 0;
+    background-color: rgba(165, 42, 42, 0.8);
+}
+.video-progress-bar::-webkit-slider-thumb {
+    width: 10px;
+    height: var( --controls-height );
+    background-color: aqua;
+    -webkit-appearance: none;
+}
+.video-volume-bar {
+    height: var( --controls-height );
+    -webkit-appearance: none;
+    margin: 0;
+    width: 10%;
+    background-color: rgba(165, 42, 42, 0.8);
+}
+.video-volume-bar::-webkit-slider-thumb {
+    width: 10px;
+    height: var( --controls-height );
+    background-color: aqua;
+    -webkit-appearance: none;
+}
+.video-play-btn {
+    width: var( --controls-height);
+    height: var( --controls-height);
+}

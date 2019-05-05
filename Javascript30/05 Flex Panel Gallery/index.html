@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./style.css">
+    <title>Flex Panel Gallery</title>
+</head>
+<body>
+    <div class="gallery">
+        <div class="panel p1 closed">
+            <div class="sub-panel upper">nie</div>
+            <div class="sub-panel middle">wiem</div>
+            <div class="sub-panel lower">nic</div>
+        </div>
+        <div class="panel p2 closed">
+            <div class="sub-panel upper">wiem</div>
+            <div class="sub-panel middle">że</div>
+            <div class="sub-panel lower">nic</div>
+        </div>
+        <div class="panel p3 closed">
+            <div class="sub-panel upper">że</div>
+            <div class="sub-panel middle">nic</div>
+            <div class="sub-panel lower">wiem</div>
+        </div>
+        <div class="panel p4 closed">
+            <div class="sub-panel upper">nic</div>
+            <div class="sub-panel middle">nie</div>
+            <div class="sub-panel lower">wiem</div>
+        </div>
+        <div class="panel p5 closed">
+            <div class="sub-panel upper">nie</div>
+            <div class="sub-panel middle">wiem</div>
+            <div class="sub-panel lower">nic</div>
+        </div>
+    </div>
+    <script>
+        const panels = document.querySelectorAll(".panel");
+        panels.forEach(function(panel) {
+            panel.addEventListener("click", handlePanel);
+        });
+
+        function handlePanel() {
+            console.log(this);
+            this.classList.toggle("closed");
+            this.classList.toggle("opened");
+        }
+    </script>
+</body>
+</html>

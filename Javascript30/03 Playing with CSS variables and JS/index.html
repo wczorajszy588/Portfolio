@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Playing with CSS variables and JS</title>
+    <script src="./script.js"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1>Update CSS Variables with <span>JS</span></h1>
+    <div class="controls">
+        <div>
+            <label for="Padding">Spacing: </label> 
+            <input type="range" min="0" max="50" id="padding" value="10" data-unit="px">
+        </div>
+        <div>
+            <label for="blur">Blur: </label>
+            <input type="range" min="0" max="5" id="blur" value="0" data-unit="px">
+        </div>
+        <div>
+            <label for="color">Base color:</label>
+            <input type="color" id="color" value="#bada55">
+        </div>
+
+    </div>
+    <img src="./image.jpg" alt="Glasses lays on opened old book. Map on its pages">
+</body>
+</html>

@@ -1,0 +1,47 @@
+html, body {
+    height: auto;
+    box-sizing: border-box;
+    margin: 0;
+    background-color: #82514c;
+}
+.wrapper {
+    display: flex;
+    align-items: center;
+}
+.form {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    box-sizing: border-box;
+    display: flex;
+    background-color: #d98880;
+    flex-direction: column;
+    width: 50%;
+    min-width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+}
+.title {
+    padding-bottom: 20px;
+    margin: 0;
+    border-bottom: 1px solid rgba(133, 146, 158, 0.7);
+}
+.row {
+    position: relative;
+    display: flex;
+    padding: 6px 10px;
+    align-items: center;
+    background-color:#d98880;
+}
+.row:hover {
+    background-color: #dc938c
+    ;
+}
+.row.last-clicked {
+    background-color: #c37a73;
+}
+input[type=checkbox] {
+    height: 20px;
+    width: 20px;
+    margin-right: 20px;
+}
