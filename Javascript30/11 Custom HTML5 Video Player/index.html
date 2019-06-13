@@ -6,18 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Custom HTML5 Video Player</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="./script.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
     <div class="player">
-        <video class="screen" src="./Mielec01.mp4"></video>
+        <video class="screen" src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"></video>
         <div class="controls">
-            <button class="video-play-btn"></button>
-            <input class="video-progress-bar" type="range" min="0" max="100">
-            <time class="video-curr-time">45:33:12</time>
-            <time class="video-total-time">21:31:23</time>
-            <input type="range" class="video-volume-bar" min="0", max="100">
+            <div class="input-range video-progress-bar">
+                <div class="elapsed-time"></div>
+            </div>
+            <div class="video-play-btn material-icons">play_arrow</div>
+            <div class="backward material-icons">fast_rewind</div>
+            <div class="forward material-icons">fast_forward</div>
+            <time class="video-curr-time">0:00:00 / 0:00:00</time>
+            <div class="input-range video-volume-bar">
+                <div class="volume-amount-txt">100%</div>
+                <div class="volume-amount-bar"></div>
+            </div>
         </div>
     </div>
+    <script src="./script.js"></script>
 </body>
 </html>

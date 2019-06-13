@@ -1,46 +1,89 @@
+
+body {
+    background-image: url(./cinema-2093264_1920.jpg);
+}
 .player {
-    --player-width: 1000px;
     position: relative;
-    width: var(--player-width);
+    max-width: 800px;
+    width: auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
 }
 .screen {
     width: 100%;
 }
 .controls {
-    --controls-height: calc( var(--player-height) / 22 );
+    height: var(--controls-height);
     position: absolute;
     bottom: 4px;
     left: 0px;
-    display: flex;
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    text-shadow: 1px 1px black, 1px -1px black, -1px 1px black, -1px -1px black;
+}
+.controls  > * {
+    border: 1px solid rgba(59, 59, 59, 0.5);
+}
+.controls > [class$="ward"] {
+    width: 30px;
 }
 .video-progress-bar {
-    width: 70%;
-    height: var( --controls-height );
-    -webkit-appearance: none;
+    width: 100%;
     margin: 0;
-    background-color: rgba(165, 42, 42, 0.8);
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
 }
-.video-progress-bar::-webkit-slider-thumb {
-    width: 10px;
-    height: var( --controls-height );
-    background-color: aqua;
-    -webkit-appearance: none;
+.video-progress-bar:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+.elapsed-time {
+    background-color: rgb(204, 17, 79);
+    height: 10px;
+    width: 0;
 }
 .video-volume-bar {
-    height: var( --controls-height );
-    -webkit-appearance: none;
     margin: 0;
-    width: 10%;
-    background-color: rgba(165, 42, 42, 0.8);
+    width: 20%;
+    height: 18px;
+    background-color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
-.video-volume-bar::-webkit-slider-thumb {
-    width: 10px;
-    height: var( --controls-height );
-    background-color: aqua;
-    -webkit-appearance: none;
+.video-volume-bar:hover  {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.6);
 }
-.video-play-btn {
-    width: var( --controls-height);
-    height: var( --controls-height);
+.volume-amount-bar {
+    background-color:rgb(204, 17, 79);
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+.volume-amount-txt {
+    z-index: 2;
+    position: sticky;
+}
+div.material-icons {
+    text-align: center;
+    align-self: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    font-size: 18px;
+}
+div.material-icons:hover {
+    background-color: rgb(204, 17, 79);;
+    cursor: pointer;
+}
+div.material-icons, .video-curr-time {
+    padding: 0 5px 0 5px;
 }
