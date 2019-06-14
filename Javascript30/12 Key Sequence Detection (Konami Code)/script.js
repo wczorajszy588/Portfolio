@@ -19,7 +19,7 @@ function handleSite() {
     }
     //function backs elements to initial value after success
     function setInitialState() {
-        window.removeEventListener("keydown", setInitialState);
+        window.removeEventListener("keydown", setInitialState); //to prevent piling-up listeners
         document.querySelector(".wrapper").classList.remove("immortal");
         updateMessage("Spróbój jeszcze raz.");
         updateTip("Teraz powinno być łatwiej.");
@@ -80,6 +80,6 @@ function handleSite() {
         document.querySelector(".wrapper").classList.add("immortal"); //to trigger blinking animation
         updateMessage("Udało się! Jesteś nieśmiertelny!");
         updateTip("Byłeś bardzo szybki.");
-        window.addEventListener("keydown", setInitialState); //to prevent piling-up listeners
+        window.addEventListener("keydown", setInitialState);
     }
 }
