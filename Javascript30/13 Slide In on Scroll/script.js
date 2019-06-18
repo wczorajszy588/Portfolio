@@ -9,19 +9,18 @@ function handleSite() {
     } );
 
     function bridle() {
-        //function should run 4 times, and after that must pass 50 milisec to again run 4 times;
         var noOfTimes = imgs.length;
         var count = 1;
         return function checkPosition( img ) {
+            //if statement block should run X times (once for each img element), and after that must pass at least 50 milisec to again run X times;
             if ( count <= noOfTimes ) {
-                console.log("run");
-                count++;
+                count++; //count number if block executions
                 setTimeout(()=> {count = 1}, 50);
-                var halfOfImage = img.offsetTop + img.height / 2;
+                var halfOfImagePositionY = img.offsetTop + img.height / 2;
                 var windowTop = window.scrollY;
                 var windowBottom = window.scrollY + window.innerHeight;
 
-                if ( windowBottom > halfOfImage && windowTop < halfOfImage ) {
+                if ( windowBottom > halfOfImagePositionY && windowTop < halfOfImagePositionY ) {
                     img.classList.add("run");
                 }
                 else {
