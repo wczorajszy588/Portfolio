@@ -37,11 +37,11 @@
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
-    const inventorsByAge = inventors.sort(sortByBirthdate);
+    const inventorsByAge = inventors.sort(sortByBirthdate).slice();
     
     function sortByBirthdate(curr,next) {
         return (function IIFE(curr) {
-            curr.year - next.year;
+            return curr.year - next.year;
         })(curr);
     }
     console.log("Inventors sorted by birthdate\n", inventorsByAge);
@@ -59,7 +59,7 @@
     console.log(`All inventors lived  ${sumLifespan} in total`);
     
     // 5. Sort the inventors by years lived
-    const inventorsByLifespan = inventors.sort(sortByLifespan);
+    const inventorsByLifespan = inventors.sort(sortByLifespan).slice();
 
     function sortByLifespan(curr, next) {
         return (function IIFE( curr ) {
