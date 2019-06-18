@@ -19,40 +19,55 @@
     
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
-    const in1500Born = inventors.filter(( person ) => {
-         if (person.year >= 1500 && person.year < 1600) {
-             return true;
-         }
-        });
+    const in1500Born = inventors.filter(isBornIn1500);
+    
+    function isBornIn1500(person) {
+        return ( person.year >= 1500 && person.year < 1600 );
+    }
     console.log("Inventors born in 1500's\n", in1500Born);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
-    const inventorsFullName = inventors.map( ( person ) => {
+    const inventorsFullName = inventors.map(getFullName);
+    
+    function getFullName(person) {
         return person.first + " " + person.last;
-    });
+    }
     console.log("All inventors full name\n", inventorsFullName);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
-    const inventorsByAge = inventors.sort(( curr, next ) => {
-        return curr.year - next.year;
-        } ).slice();
+    const inventorsByAge = inventors.sort(sortByBirthdate);
+    
+    function sortByBirthdate(curr,next) {
+        return (function IIFE(curr) {
+            curr.year - next.year;
+        })(curr);
+    }
     console.log("Inventors sorted by birthdate\n", inventorsByAge);
 
     // Array.prototype.reduce()
     
     // 4. How many years did all the inventors live?
-    const sumLifespan = inventors.reduce(( sum, curr ) => {
-        return sum + curr.passed - curr.year;
-    }, 0);
+    const sumLifespan = inventors.reduce(addLifeSpan, 0);
+    
+    function addLifeSpan(sum, curr) {
+        return (function IIFE( sum ) {
+            return sum + curr.passed - curr.year;
+        })(sum);
+    }
     console.log(`All inventors lived  ${sumLifespan} in total`);
     
     // 5. Sort the inventors by years lived
-    const sortByLifespan = inventors.sort(( curr, next ) => {
-        return (curr.passed - curr.year) - (next.passed - next.year);
-    })
-    console.log("Inventors sorted from shorest living to longest\n",sortByLifespan);
+    const inventorsByLifespan = inventors.sort(sortByLifespan);
+
+    function sortByLifespan(curr, next) {
+        return (function IIFE( curr ) {
+            return ( curr.passed - curr.year ) - ( next.passed - next.year );
+        })(curr);
+ 
+    }
+    console.log("Inventors sorted from shorest living to longest\n",inventorsByLifespan);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
@@ -70,29 +85,43 @@
     
     // 7. sort Exercise
     // Sort the people alphabetically by first name
-    const sortPeopleByLastName = people.sort((curr, next)=>{
-        const one = curr.split(", ")[1];
-        const two = next.split(", ")[1];
-        if (one < two) 
+    const sortedByLastName = people.sort(sortByLastName);
+    
+    function sortByLastName(curr, next) {
+        curr = getLastName(curr);
+        next = getLastName(next);
+        return (function IIFE(curr) {
+            if (curr < next) 
             return -1;
-        if (one > two)
-        return 1
-        if (one == two)
-        return 0;
-    });
-    console.log("People sorted by last name\n", sortPeopleByLastName);
+            if (curr > next)
+            return 1
+            if (curr == next)
+            return 0;
+        })(curr);
+
+        function getLastName(fullName) {
+            return fullName.split(", ")[1];
+        }
+    }
+    console.log("People sorted by first name\n", sortedByLastName);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-    const transport = data.reduce( ( types, curr ) => {
-        types[curr]++;
-        return types;
-    }, {
-        car: 0,
-        van: 0,
-        truck: 0,
-        bike: 0,
-        walk: 0,
-    })
+    const transport = data.reduce( 
+                            sumTypes, 
+                            {
+                                car: 0,
+                                van: 0,
+                                truck: 0,
+                                bike: 0,
+                                walk: 0
+                            });
+    
+    function  sumTypes(objectWithTypes, curr) {
+        return (function IIFE(objectWithTypes) {
+            objectWithTypes[curr]++;
+            return objectWithTypes;
+        })(objectWithTypes);
+    }
     console.log("Number of transport posibilities\n", transport);
