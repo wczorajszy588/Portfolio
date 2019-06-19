@@ -7,47 +7,47 @@ function handleSite() {
     var outOfTime; //for timeOut function Id
     const iconsFromPage = document.querySelectorAll(".key");
 
-    updateMessage("Wpisz kod na nieśmiertelność.");
-    updateTip("Musisz być szybki.");
+    const DOMElements = {
+        wrapper: document.querySelector(".wrapper"),
+        iconsFromPage: document.querySelectorAll(".key"),
+        message: document.querySelector(".message"),
+        tip: document.querySelector(".tip")
+    }
+
+    DOMElements.message.textContent = "Wpisz kod na nieśmiertelność.";
+    DOMElements.tip.textContent = "Musisz być szybki.";
 
     function afterKeyFlow(event) {
         clearTimeout(outOfTime); //cancel previous sequence reseting
         outOfTime = setTimeout(resetSequence, 250); //if is 0.25 sec gap between keys, sequence will be reseted
-        addKeyToSequence(event.keyCode);
-        markValidSequence();
-        checkForKonamiCode() ? success() : 0;         //if whole sequence successed
+        mySequence.push(event.keyCode);
+        mySequence.every(markValidKey);
+        konamiCode.every(isKeyValid) ? success() : 0;
     }
     //function backs elements to initial value after success
     function setInitialState() {
-        window.removeEventListener("keydown", setInitialState); //to prevent piling-up listeners
-        document.querySelector(".wrapper").classList.remove("immortal");
-        updateMessage("Spróbój jeszcze raz.");
-        updateTip("Teraz powinno być łatwiej.");
-    }
-    //turning buttons that match sequence into red
-    function markValidSequence() {
-        mySequence.every(function (key, index) {
-            if (key == konamiCode[index]) {
-                setIconAsGood(iconsFromPage[index]);
-                return true;
-            }
-            else {
-                return false;
-            }
-        });
-    }
-    //check if sequention is whole and valid
-    function checkForKonamiCode() {
-        if (mySequence.length == konamiCode.length) {
-            return konamiCode.every(function checkKeysEquality(key, index) {
-                return key == mySequence[index];
-            })
-        }
-        return false;
+        window.removeEventListener("keydown", setInitialState);
+        DOMElements.wrapper.classList.remove("immortal");
+        DOMElements.message.textContent = "Spróbuj jeszcze raz.";
+        DOMElements.tip.textContent = "Teraz powinno być łatwiej.";
+        resetSequence();
     }
 
-    function addKeyToSequence(key) {
-        mySequence.push(key);
+    //turning buttons that match sequence into red
+    function markValidKey(key, index) {
+        return (function IIFE( key ) {
+            if ( key == konamiCode[index] ) {
+                setIconAsGood( iconsFromPage[index] );
+                return true;
+            }
+        })(key);
+    }
+    //check if sequention is whole and valid
+
+    function isKeyValid(key, index) {
+            return (function IIFE( key ) {
+                return key == mySequence[index];
+            })(key);
     }
 
     function resetSequence() {
@@ -67,19 +67,11 @@ function handleSite() {
         icon.classList.add("bad");
     }
 
-    function updateMessage(message) {
-        document.querySelector(".message").textContent = message;
-    }
-
-    function updateTip(tip) {
-        document.querySelector(".tip").textContent = tip;
-    }
-
     function success() {
         clearTimeout(outOfTime); //stop reseting after success
         document.querySelector(".wrapper").classList.add("immortal"); //to trigger blinking animation
-        updateMessage("Udało się! Jesteś nieśmiertelny!");
-        updateTip("Byłeś bardzo szybki.");
-        window.addEventListener("keydown", setInitialState);
+        DOMElements.message.textContent = "Udało się! Jesteś nieśmiertelny!";
+        DOMElements.tip.textContent = "Byłeś bardzo szybki.";
+        window.addEventListener("keydown", setInitialState); //to prevent piling-up listeners
     }
 }
