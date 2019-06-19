@@ -21,39 +21,41 @@
       { text: 'Ramen is my fav food ever', id: 123523 },
       { text: 'Nice Nice Nice!', id: 542328 }
     ];
-    console.table(people);
+    console.log(people);
     // Some and Every Checks
     // Array.prototype.some() // is at least one person 19 or older?
-    const isSomeoneAdult = people.some( ( person ) => {
-        const currentYear = new Date().getFullYear();
-        return person.year + 19 <= currentYear;
-    })
+    const isSomeoneAdult = people.some(checkIfAdult);
+
+    function checkIfAdult(person) {
+      const currentYear = new Date().getFullYear();
+      return person.year + 19 <= currentYear;
+    }
     console.log("There is someone adult in this group\n",  isSomeoneAdult);
 
     // Array.prototype.every() // is everyone 19 or older?
-    const isEveryoneAdults = people.every( (person) => {
-        const currentYear = new Date().getFullYear();
-        return person.year + 19 <= currentYear;
-    })
-    console.log("Everyone are adults in this group\n",  isEveryoneAdults);
+    const isEveryoneAdult = people.every(checkIfAdult);
+
+    console.log("Everyone are adults in this group\n",  isEveryoneAdult);
     
-    console.table(comments);
+    console.log(comments);
     // Array.prototype.find()
     // Find is like filter, but instead returns just the one you are looking for
     // find the comment with the ID of 823423
-    const comment823423 = comments.find( (comment) => {
-        return comment.id == 823423;
-    })
+    const comment823423 = comments.find(get823423Comment);
+
+    function get823423Comment(comment) {
+      return comment.id == 823423;
+    }
+
     console.log("Comment with desired id:\n", comment823423);
 
     // Array.prototype.findIndex()
     // Find the comment with this ID
-    const commentIdxForRemoval = comments.findIndex((comment) => {
-        return comment.id == 823423;
-    })
-    // delete the comment with the ID of 823423
-    comments.splice(commentIdxForRemoval, 1);
-    console.log("Comment with desired id was removed\n", comments);
+    const commentIdxForRemoval = comments.findIndex(get823423Comment);
+    // delete comment with the ID of 823423
+    var commentsCopy = comments.slice();
+    commentsCopy.splice(commentIdxForRemoval, 1);
+    console.log("Comment with desired id was removed\n", commentsCopy);
   </script>
 </body>
 </html>
